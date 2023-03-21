@@ -13,4 +13,9 @@ pipeline{
 			}
 		}
 	}
+	post {
+		success {
+				build job: 'job2', wait: true
+			}
+	}
 }
