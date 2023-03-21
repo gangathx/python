@@ -8,10 +8,6 @@ pipeline{
 		stage('Build'){
 			steps{
 				sh''' cd $WORKSPACE && ls
-				export https_proxy="http://proxy-chain.intel.com:912"
-				git config user.name $username
-				git config user.email $usermail
-				git pull
 				python2 file3.py
 				pwd'''
 			}
@@ -23,6 +19,9 @@ pipeline{
 			sh '''
 
 			echo $GIT_BRANCH
+			export https_proxy="http://proxy-chain.intel.com:912"
+			git config user.name $username
+			git config user.email $usermail
 			git fetch origin
 			git checkout main
 			git merge $GIT_BRANCH
