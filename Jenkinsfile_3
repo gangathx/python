@@ -8,6 +8,7 @@ pipeline{
 		stage('Build'){
 			steps{
 				sh''' cd $WORKSPACE && ls
+				git pull origin main
 				python2 file3.py
 				pwd'''
 			}
