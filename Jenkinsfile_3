@@ -8,6 +8,10 @@ pipeline{
 		stage('Build'){
 			steps{
 				sh''' cd $WORKSPACE && ls
+				export https_proxy="http://proxy-chain.intel.com:912"
+				git config user.name $username
+				git config user.email $usermail
+				git pull
 				python2 file3.py
 				pwd'''
 			}
@@ -17,9 +21,7 @@ pipeline{
 		success {
 			withCredentials([usernamePassword(credentialsId: 'maheedhar_git_token', passwordVariable: 'password', usernameVariable: 'username')]) {
 			sh '''
-			export https_proxy="http://proxy-chain.intel.com:912"
-			git config user.name $username
-			git config user.email $usermail
+
 			echo $GIT_BRANCH
 			git fetch origin
 			git checkout main
