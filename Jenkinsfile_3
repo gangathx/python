@@ -15,7 +15,7 @@ pipeline{
 		}
 	}
 	post {
-		success {
+		failure {
 				build job: 'job2', wait: true
 			}
 	}
